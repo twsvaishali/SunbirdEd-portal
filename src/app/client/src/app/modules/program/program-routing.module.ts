@@ -13,14 +13,15 @@ const routes: Routes = [{
   }
 },
 {
-  path: 'program/:programId', component: ProgramComponent,
+  path: 'create-program', component: CreateProgramComponent, pathMatch: 'full', 
   data: {
     telemetry: { env: 'programs', type: 'view', subtype: 'paginate' }
   }
 },
 {
-  path: 'program/create', component: CreateProgramComponent,
+  path: 'program/:programId', component: ProgramComponent,
   data: {
+    telemetry: { env: 'programs', type: 'view', subtype: 'paginate' }
   }
 }
 ];
