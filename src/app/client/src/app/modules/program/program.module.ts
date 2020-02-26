@@ -11,6 +11,7 @@ import { ListAllProgramsComponent } from './components';
 import { ProgramComponent } from './components/program/program.component';
 import { OnboardPopupComponent } from './components/onboard-popup/onboard-popup.component';
 import { ProgramHeaderComponent } from './components/program-header/program-header.component';
+import { CreateProgramComponent } from './components/create-program/create-program.component';
 import { NgInviewModule } from 'angular-inport';
 import { TelemetryModule } from '@sunbird/telemetry';
 import { DynamicModule } from 'ng-dynamic-component';
@@ -18,9 +19,9 @@ import { CbseProgramModule } from '../../modules/cbse-program/cbse-program.modul
 import { CollectionComponent, DashboardComponent } from '../cbse-program';
 import { CommonConsumptionModule} from '@project-sunbird/common-consumption';
 @NgModule({
-  declarations: [ListAllProgramsComponent, ProgramComponent, OnboardPopupComponent, ProgramHeaderComponent],
+  declarations: [ListAllProgramsComponent, ProgramComponent, OnboardPopupComponent, ProgramHeaderComponent, CreateProgramComponent],
   imports: [
-    SuiModule,
+  SuiModule,
     CommonModule,
     ProgramRoutingModule,
     CommonConsumptionModule,
