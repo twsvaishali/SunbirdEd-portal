@@ -2,36 +2,171 @@
 <div class="ui centered grid my-10">
     <div class="six wide tablet eight wide computer column">
         <form>
-            <div class="twelve wide column">
-                <div class="sb-field-group">
-                    <label>Name</label>
-                    <div class="sb-field">
-                        <input autofocus="" class="sb-form-control ng-pristine ng-valid ng-touched" type="text" placeholder="Name">
-                    </div>
-                </div>
-            </div>
-
-            <div class="twelve wide column fields mt-30">
-                <div class="required field">
-                    <label>Expression for Interest Date</label>
-                    <div class="ui read-only calendar mb-10">
-                        <div class="ui input right icon">
-                        <i class="calendar icon date-calendar"></i>
-                        <input [pickerMinDate]='pickerMinDate' suiDatepicker [pickerMode]="'date'">
-                        </div>
-                    </div>
-                </div>
-                <div class="field ml-10">
-                    <label>Shortlisting of Contributor</label>
-                    <div apply-script class="ui calendar" >
-                        <div class="ui input right icon">
-                        <i class="calendar icon date-calendar"></i>
-                        <input [pickerMinDate]='pickerMinDateForEndDate' suiDatepicker [pickerMode]="'date'">
+            <div class="ui grid">
+                <div class="twelve wide column">
+                    <div class="sb-field-group">
+                        <label>Name</label>
+                        <div class="sb-field">
+                            <input autofocus="" class="sb-form-control ng-pristine ng-valid ng-touched" type="text" placeholder="Name">
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="ui grid">
+                <div class="four wide column">
+                    <div class="required sb-field-group">
+                        <label>Expression for Interest Date</label>
+                        <div class="ui read-only calendar mb-10 sb-field">
+                            <div class="ui input right icon">
+                            <i class="calendar icon date-calendar"></i>
+                            <input [pickerMinDate]='pickerMinDate' suiDatepicker [pickerMode]="'date'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <div class="required sb-field-group">
+                        <label>Shortlisting of Contributor Date</label>
+                        <div class="ui read-only calendar mb-10">
+                            <div class="ui input right icon">
+                            <i class="calendar icon date-calendar"></i>
+                            <input [pickerMinDate]='pickerMinDate' suiDatepicker [pickerMode]="'date'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <div class="required sb-field-group">
+                        <label>Content Submission Date</label>
+                        <div class="ui read-only calendar mb-10">
+                            <div class="ui input right icon">
+                            <i class="calendar icon date-calendar"></i>
+                            <input [pickerMinDate]='pickerMinDate' suiDatepicker [pickerMode]="'date'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui grid">
+                <div class="four wide column">
+                    <div class="required sb-field-group">
+                        <label>Content Curation Date</label>
+                        <div class="ui read-only calendar mb-10">
+                            <div class="ui input right icon">
+                            <i class="calendar icon date-calendar"></i>
+                            <input [pickerMinDate]='pickerMinDate' suiDatepicker [pickerMode]="'date'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <div class="required sb-field-group">
+                        <label>Textbook Publication Date</label>
+                        <div class="ui read-only calendar mb-10">
+                            <div class="ui input right icon">
+                            <i class="calendar icon date-calendar"></i>
+                            <input [pickerMinDate]='pickerMinDate' suiDatepicker [pickerMode]="'date'">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column">
+                    <div class="d-flex flex-dc fields-selection">
+                        <label> Reward and Recognitions</label>
+                        <div class="sb-field field-focus mb-16">
+                            <select class="ui dropdown selection fields-dropdown">
+                                <option value="">Test 1</option>
+                                <option value="">Test 2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ui grid">
+                <div class="twelve wide column">
+                    <div class="sb-field-group">
+                        <label>Rewards Given</label>
+                        <div class="sb-field relative">
+                            <textarea type="text" class="wmd-input width-100 sb-form-control" placeholder="Add reward description" name="" required></textarea>
+                            <span class="characters-left">1000 Characters left</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui grid">
+                <div class="d-flex flex-dc fields-selection six wide column">
+                    <label> Board</label>
+                    <div class="sb-field field-focus mb-16">
+                        <select class="ui dropdown selection fields-dropdown">
+                            <option value="">Select board</option>
+                            <option value="">NCERT</option>
+                            <option value="">CBSC</option>
+                            <option value="">ICSC</option>
+                            <option value="">UP board</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex flex-dc fields-selection six wide column">
+                    <label> Select Medium</label>
+                    <div class="sb-field field-focus mb-16">
+                        <select class="ui dropdown selection fields-dropdown">
+                            <option value="">Select Medium </option>
+                            <option value="">English </option>
+                            <option value="">Hindi</option>
+                            <option value="">Oriya </option>
+                            <option value="">Marathi</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ui grid">
+                <div class="d-flex flex-dc fields-selection six wide column sb-field-group">
+                    <label> Grade / Class </label>
+                    <div class="sb-field field-focus mb-16">
+                        <select class="ui dropdown selection fields-dropdown sb-field">
+                            <option value="">Select Class</option>
+                            <option value="">Grade 1 </option>
+                            <option value="">Grade 2</option>
+                            <option value="">Grade 3 </option>
+                            <option value="">Grade 3</option>
+                            <option value="">Grade 4 </option>
+                            <option value="">Grade 5</option>
+                            <option value="">Grade 6 </option>
+                            <option value="">Grade 7</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="d-flex flex-dc fields-selection six wide column">
+                    <label> Subject</label>
+                    <div class="sb-field field-focus mb-16">
+                        <select class="ui dropdown selection fields-dropdown">
+                            <option value="">Select Subject</option>
+                            <option value="">Math</option>
+                            <option value="">Marathi</option>
+                            <option value="">Science</option>
+                            <option value="">History</option>
+                            <option value="">English</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui grid">
+                <div class="four wide column">
+                    <button class="sb-btn sb-btn-normal sb-btn-primary">
+                        Save
+                    </button>
+                    <button class="sb-btn sb-btn-normal sb-btn-warning mx-10">
+                        Publish
+                    </button>
+                </div>
+            </div>
         </form>
     </div>
 </div>

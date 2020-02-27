@@ -3,6 +3,8 @@ import { ProgramsService, PublicDataService } from '@sunbird/core';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as _ from 'lodash-es';
 import { ActivatedRoute, Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-create-program',
   templateUrl: './create-program.component.html',
@@ -10,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CreateProgramComponent implements OnInit, AfterViewInit {
 
-
+  public categoryList: {};
   pickerMinDate = new Date(new Date().setHours(0, 0, 0, 0));
   pickerMinDateForEndDate = new Date(new Date().setHours(0, 0, 0, 0));
 

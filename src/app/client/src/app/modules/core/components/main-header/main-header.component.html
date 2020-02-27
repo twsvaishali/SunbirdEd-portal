@@ -85,24 +85,19 @@
         *ngIf="(showExploreHeader || userService.loggedIn || isOffline && !showOfflineHelpCentre) && !router.url.includes('/contribute/program')">
         <ng-container *ngIf="contributeTabActive else defaultView">
             <div class="ui container d-flex flex-ai-center mx-0">
-                <!-- <span class="fs-1 sb-color-white py-8">{{resourceService?.frmelmnts?.lbl?.availableForContribution}}</span> -->
-                <a [routerLink]="'contribute/create-program'"><span class="fs-1 sb-color-white">Add</span></a>
-                <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <span class="fs-1 sb-color-white">List</span>
+                <!-- <span class="fs-1 sb-color-white py-8">{{resourceService?.frmelmnts?.lbl?.availableForContribution}}</span> -->              
+                <button
+                [routerLink]="'contribute/create-program'"
+                class="d-flex flex-ai-center sb-btn sb-btn-normal sb-btn-link sb-left-icon-btn sb-color-white"
+                type="button">Add New Program</button>
+
+                <!-- <span class="computer only mx-10 search-qrcode-divider">|</span>
+                <span class="fs-1 sb-color-white">List</span> -->
             </div>
         </ng-container>
         <ng-template #defaultView>
             <div class="ui container d-flex flex-ai-center mx-0">
                 
-      <button
-      class="d-flex flex-ai-center sb-btn sb-btn-normal sb-btn-link sb-left-icon-btn sb-color-white"
-       type="button">
-        <i class="icon-svg icon-svg--xs icon-arrow-long-left mr-8">
-            <svg class="icon icon-svg--white">
-            <use xlink:href="assets/images/sprite.svg#arrow-long-left"></use>
-            </svg>
-        </i>Back
-    </button>
                 <!--QR Button-->
                 <!-- <button class="ui button qr-code-btn d-flex flex-ai-center computer only mr-0" appTelemetryInteract
                     [telemetryInteractEdata]="enterDialCodeInteractEdata" (click)="showQrmodal = true;"
@@ -139,9 +134,9 @@
                 <!--/Explore Pages-->
                 <!--/Search Box-->
                 <!--Language Dropdown-->
-                <!-- <app-language-dropdown [languageRange]='languages' class="computer only ml-auto"
+                <app-language-dropdown [languageRange]='languages' class="computer only ml-auto"
                     *ngIf="languages && !router.isActive('workspace', false)">
-                </app-language-dropdown> -->
+                </app-language-dropdown>
                 <!--/Language Dropdown-->
             </div>
         </ng-template>
