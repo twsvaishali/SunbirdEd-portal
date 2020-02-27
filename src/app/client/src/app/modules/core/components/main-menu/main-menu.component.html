@@ -46,9 +46,9 @@
 			*ngIf="!router.isActive('', true)" [routerLink]="[slug ? slug + '/explore-course' : '/explore-course']"
 			appTelemetryInteract [telemetryInteractEdata]="learnMenuIntractEdata">
 			{{resourceService?.frmelmnts?.tab?.courses}}
-		</a> -->
-		<span class="item divider">|</span>
-		<a class="item font-weight-bold sb-color-primary pr-0" href="/programs" appTelemetryInteract
+		</a>
+		<span class="item divider">|</span> -->
+		<a class="item font-weight-bold sb-color-primary pr-0" href="/resources" appTelemetryInteract
 			[telemetryInteractEdata]="signInIntractEdata">
 			{{resourceService.frmelmnts?.btn?.login}}
 		</a>
@@ -124,7 +124,7 @@
 			<div class="item active">
 				<i class="close link icon" (click)="showSideBar()" tabindex="0"
 					title="{{resourceService?.frmelmnts?.btn?.close}}"></i>
-				<a href="/programs">
+				<a href="/resources">
 					{{resourceService.frmelmnts?.btn?.signin}}
 				</a>
 			</div>
