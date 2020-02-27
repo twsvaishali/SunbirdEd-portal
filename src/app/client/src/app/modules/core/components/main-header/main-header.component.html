@@ -15,8 +15,8 @@
                     <img (click)="navigateToHome()" class="cursor-pointer" alt={{tenantInfo.titleName}} src="{{tenantInfo.logo}}">
                 </a> -->
                 <!--/Logo-->
-                <a class="d-flex logo" tabindex="0" title="Sourcing Portal" role="banner">
-                    <h3>Sourcing Portal</h3>
+                <a class="d-flex logo" tabindex="0" title="Creation & Contribution Portal" role="banner" routerLink="'/'">
+                    <h3>Creation & Contribution Portal</h3>
                 </a>
             </div>
             <div class="six wide column p-0 d-flex flex-jc-flex-end flex-ai-center">
@@ -85,11 +85,8 @@
         *ngIf="(showExploreHeader || userService.loggedIn || isOffline && !showOfflineHelpCentre) && !router.url.includes('/programs/program')">
         <ng-container *ngIf="programsTabActive else defaultView">
             <div class="ui container d-flex flex-ai-center mx-0">
-                <!-- <span class="fs-1 sb-color-white py-8">{{resourceService?.frmelmnts?.lbl?.availableForContribution}}</span> -->              
-                <button
-                [routerLink]="'programs/create-program'"
-                class="d-flex flex-ai-center sb-btn sb-btn-normal sb-btn-link sb-left-icon-btn sb-color-white"
-                type="button">Add New Program</button>
+                <!-- <span class="fs-1 sb-color-white py-8">{{resourceService?.frmelmnts?.lbl?.availableForContribution}}</span> -->
+                <a routerLink="'programs/create-program'" ><span class="fs-1 sb-color-white py-8">Add New Program</span></a>
                 <span class="computer only mx-10 search-qrcode-divider">|</span>
                 <a routerLink="contribute" ><span class="fs-1 sb-color-white py-8">All Programs</span></a>
                 <span class="computer only mx-10 search-qrcode-divider">|</span>
@@ -104,6 +101,8 @@
         </ng-container>
         <ng-template #defaultView>
             <div class="ui container d-flex flex-ai-center mx-0">
+                <a routerLink="'programs/create-program'" ><span class="fs-1 sb-color-white py-8">Add New Program</span></a>
+                <span class="computer only mx-10 search-qrcode-divider">|</span>
                 <a routerLink="contribute" ><span class="fs-1 sb-color-white py-8">All Programs</span></a>
                 <span class="computer only mx-10 search-qrcode-divider">|</span>
                 <a routerLink="contribute/myenrollprograms" ><span class="fs-1 sb-color-white py-8">My Programs</span></a>
