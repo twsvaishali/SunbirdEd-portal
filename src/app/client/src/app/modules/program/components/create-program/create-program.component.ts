@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CreateProgramComponent implements OnInit, AfterViewInit {
   showTextBookSelector = false;
+  data;
+  nameOfOrgani;
   public categoryList: {};
   pickerMinDate = new Date(new Date().setHours(0, 0, 0, 0));
   pickerMinDateForEndDate = new Date(new Date().setHours(0, 0, 0, 0));
@@ -20,6 +22,12 @@ export class CreateProgramComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute, private router: Router, private navigationHelperService: NavigationHelperService) { }
 
   ngOnInit() {
+  this.nameOfOrgani= "Name of organi";
+    this.data =
+    {
+      'filteredOptions' :
+      [{'name': 'NCERT', 'value': 'NCERT'}, {'name': 'CBSE', 'value': 'CBSE'},, {'name': 'ICSE', 'value': 'ICSE'},, {'name': 'UP', 'value': 'UP'}]
+    }
   }
 
   ngAfterViewInit() {
