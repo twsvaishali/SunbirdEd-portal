@@ -12,6 +12,8 @@ import { ProgramComponent } from './components/program/program.component';
 import { OnboardPopupComponent } from './components/onboard-popup/onboard-popup.component';
 import { ProgramHeaderComponent } from './components/program-header/program-header.component';
 import { CreateProgramComponent } from './components/create-program/create-program.component';
+import { ProgramNominationsComponent } from './components/program-nominations/program-nominations.component';
+import { ListNominationsComponent } from './components/list-nominations/list-nominations.component';
 import { NgInviewModule } from 'angular-inport';
 import { TelemetryModule } from '@sunbird/telemetry';
 import { DynamicModule } from 'ng-dynamic-component';
@@ -19,7 +21,7 @@ import { CbseProgramModule } from '../../modules/cbse-program/cbse-program.modul
 import { CollectionComponent, DashboardComponent } from '../cbse-program';
 import { CommonConsumptionModule} from '@project-sunbird/common-consumption';
 @NgModule({
-  declarations: [ListAllProgramsComponent, ProgramComponent, OnboardPopupComponent, ProgramHeaderComponent, CreateProgramComponent],
+  declarations: [ListAllProgramsComponent, ProgramComponent, OnboardPopupComponent, ProgramHeaderComponent, CreateProgramComponent, ProgramNominationsComponent, ListNominationsComponent],
   imports: [
   SuiModule,
     CommonModule,
@@ -33,7 +35,7 @@ import { CommonConsumptionModule} from '@project-sunbird/common-consumption';
     NgInviewModule,
     TelemetryModule,
     CbseProgramModule,
-    DynamicModule.withComponents([CollectionComponent, DashboardComponent])
+    DynamicModule.withComponents([CollectionComponent, DashboardComponent, ListNominationsComponent])
   ],
   exports: [
     ProgramComponent,
