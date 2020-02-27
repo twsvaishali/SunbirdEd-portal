@@ -2,7 +2,7 @@ import { ProgramsService } from '@sunbird/core';
 import { ListAllProgramsComponent } from './components';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProgramComponent, CreateProgramComponent } from './components';
+import { ProgramComponent, CreateProgramComponent, ProgramNominationsComponent} from './components';
 
 const routes: Routes = [{
   path: '', component: ListAllProgramsComponent, canActivate: [ProgramsService],
@@ -20,6 +20,12 @@ const routes: Routes = [{
 },
 {
   path: 'program/:programId', component: ProgramComponent,
+  data: {
+    telemetry: { env: 'programs', type: 'view', subtype: 'paginate' }
+  }
+},
+{
+  path: 'nominations/:programId', component: ProgramNominationsComponent,
   data: {
     telemetry: { env: 'programs', type: 'view', subtype: 'paginate' }
   }
