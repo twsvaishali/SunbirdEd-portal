@@ -1,7 +1,7 @@
 <table class="ui celled table">
   <thead>
 	<tr>
-		<th>Contributor Name</th>
+		<th>Nominee Name</th>
 		<th>Type</th>
 		<th>Website</th>
 		<th>Actions</th>
@@ -9,7 +9,7 @@
 </thead>
  <tbody>
 	<tr *ngFor="let nomination of nominations">
-	  <td data-label="Contributor Name">{{nomination.contributor_name}}</td>
+	  <td data-label="Contributor Name"> <a routerLink="/profile">{{nomination.contributor_name}}</a></td>
 	  <td data-label="Type">{{nomination.type}}</td>
 	  <td data-label="Website">{{nomination.website ? nomination.website : "NA"}}</td>
 	  <td data-label="Actions">

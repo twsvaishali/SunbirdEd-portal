@@ -10,8 +10,11 @@
 			appTelemetryInteract [telemetryInteractEdata]="learnMenuIntractEdata" routerLink="/learn">
 			{{resourceService?.frmelmnts?.tab?.courses}}
 		</a> -->
-		<a class="item" [class.active]="router.isActive('/contribute')" routerLink="/contribute">
+		<a class="item" [class.active]="router.isActive('/programs')" routerLink="/programs">
 			Programs
+		</a>
+		<a class="item" [class.active]="router.isActive('/contribute')" routerLink="/contribute">
+			Contribute
 		</a>
 		<!-- <a class="item" [class.active]="router.isActive('/workspace')" appTelemetryInteract
 			[telemetryInteractEdata]="workspaceMenuIntractEdata" *ngIf='permissionService.permissionAvailable'
@@ -45,7 +48,7 @@
 			{{resourceService?.frmelmnts?.tab?.courses}}
 		</a> -->
 		<span class="item divider">|</span>
-		<a class="item font-weight-bold sb-color-primary pr-0" href="/resources" appTelemetryInteract
+		<a class="item font-weight-bold sb-color-primary pr-0" href="/programs" appTelemetryInteract
 			[telemetryInteractEdata]="signInIntractEdata">
 			{{resourceService.frmelmnts?.btn?.login}}
 		</a>
@@ -99,7 +102,11 @@
 			</a> -->
 			<a class="item" [class.active]="router.isActive('/contribute')"
 				(click)="showSideBar()" routerLink="/contribute">
-				{{resourceService?.frmelmnts?.tab?.contribute}}
+				Contribute
+			</a>
+			<a class="item" [class.active]="router.isActive('/programs')"
+				(click)="showSideBar()" routerLink="/programs">
+				Programs
 			</a>
 			<a class="item" [class.active]="router.isActive('/search/profile') || router.isActive('/profile')"
 				(click)="showSideBar()" routerLink="/profile">
@@ -117,7 +124,7 @@
 			<div class="item active">
 				<i class="close link icon" (click)="showSideBar()" tabindex="0"
 					title="{{resourceService?.frmelmnts?.btn?.close}}"></i>
-				<a href="/contribute">
+				<a href="/programs">
 					{{resourceService.frmelmnts?.btn?.signin}}
 				</a>
 			</div>
