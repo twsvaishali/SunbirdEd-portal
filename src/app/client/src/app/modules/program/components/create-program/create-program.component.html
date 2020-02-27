@@ -11,6 +11,13 @@
 					<label>Name</label>
 					<input autofocus="" class="sb-form-control ng-pristine ng-valid ng-touched" type="text" placeholder="Name">
 				 </div>
+				 <div class="required field px-10">
+					   <label>Description</label>
+					   <div class="sb-field relative">
+						  <textarea type="text" class="wmd-input width-100 sb-form-control" placeholder="Add reward description" name="" required></textarea>
+						  <span class="characters-left">1000 Characters left</span>
+					   </div>
+					</div>
 				 <h5 class="ui dividing header font-weight-bold">Progam Schedule Dates</h5>
 				 <div class="three fields">
 					<div class="required field">
@@ -60,31 +67,6 @@
 						  </div>
 					   </div>
 					</div>
-					<div class="field">
-					   <label> List of content types</label>
-					   <ng-template let-option #optionTemplate >
-						  <div class="field m-0">
-							 <div class="template-checkbox">
-								<div class="p-5 option-text"  title="{{option.name}}">
-								   {{option.name}}
-								</div>
-								<div class="ml-auto">
-								   <i class="square outline medium icon"></i>
-								</div>
-							 </div>
-						  </div>
-					   </ng-template>
-					   <sui-multi-select class="selection"
-					   labelField="name"
-					   [hasLabels]="true"
-					   [options]="data.filteredOptions"
-					   valueField="name"
-					   #multiSelect>
-					   <sui-select-option *ngFor="let option of data.filteredOptions"
-					   [value]="option" >
-					   </sui-select-option>
-					   </sui-multi-select>
-					</div>
 				 </div>
 				 <h5 class="ui dividing header font-weight-bold">Select Text books from Diksha </h5>
 				 <div class="two fields">
@@ -102,19 +84,17 @@
 							 </div>
 						  </div>
 					   </ng-template>
-					   <sui-multi-select class="selection"
-					   labelField="name"
-					   [hasLabels]="true"
-					   [options]="data.filteredOptions"
-					   valueField="name"
-					   #multiSelect>
-					   <sui-select-option *ngFor="let option of data.filteredOptions"
-					   [value]="option" >
-					   </sui-select-option>
-					   </sui-multi-select>
+					   <sui-select class="selection"
+						   labelField="name"
+						   [options]="options"
+						   valueField="name">
+						   <sui-select-option *ngFor="let option of data.board"
+						   [value]="option">
+						   </sui-select-option>
+					   </sui-select>
 					</div>
 					<div class="required field">
-					   <label> Select Medium</label>
+					   <label>Select Medium</label>
 					   <ng-template let-option #optionTemplate >
 						  <div class="field m-0">
 							 <div class="template-checkbox">
@@ -130,10 +110,10 @@
 					   <sui-multi-select class="selection"
 					   labelField="name"
 					   [hasLabels]="true"
-					   [options]="data.filteredOptions"
+					   [options]="options"
 					   valueField="name"
 					   #multiSelect>
-					   <sui-select-option *ngFor="let option of data.filteredOptions"
+					   <sui-select-option *ngFor="let option of data.medium"
 					   [value]="option" >
 					   </sui-select-option>
 					   </sui-multi-select>
@@ -190,11 +170,8 @@
 					   </sui-select-option>
 					   </sui-multi-select>
 					</div>
-				 </div>
-				 <h5 class="ui dividing header font-weight-bold">Reward and Recognition</h5>
-				 <div class="px-10">
-					<div class="field">
-					   <label> Reward and Recognitions</label>
+						<div class="field">
+					   <label> List of content types</label>
 					   <ng-template let-option #optionTemplate >
 						  <div class="field m-0">
 							 <div class="template-checkbox">
@@ -208,16 +185,18 @@
 						  </div>
 					   </ng-template>
 					   <sui-multi-select class="selection"
-					   labelField="name"
-					   [hasLabels]="true"
-					   [options]="data.filteredOptions"
-					   valueField="name"
-					   #multiSelect>
-					   <sui-select-option *ngFor="let option of data.filteredOptions"
-					   [value]="option" >
-					   </sui-select-option>
+						   labelField="name"
+						   [options]="options"
+						   valueField="name"
+						   #multiselect>
+							   <sui-select-option *ngFor="let option of data.contenttypes"
+							   [value]="option" >
+							   </sui-select-option>
 					   </sui-multi-select>
 					</div>
+				 </div>
+				 <h5 class="ui dividing header font-weight-bold">Reward and Recognition</h5>
+				 <div class="px-10">
 					<div class="field">
 					   <label>Rewards Given</label>
 					   <div class="sb-field relative">
@@ -239,6 +218,6 @@
 			<div class="ui bottom attached segment" suiTabContent="2" >
 				Tab2
 			</div>
-		<sui-tabset>
+		</sui-tabset>
    </div>
 </div>

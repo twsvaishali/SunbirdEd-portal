@@ -12,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CreateProgramComponent implements OnInit, AfterViewInit {
   showTextBookSelector = false;
   data;
-  nameOfOrgani;
   public categoryList: {};
   pickerMinDate = new Date(new Date().setHours(0, 0, 0, 0));
   pickerMinDateForEndDate = new Date(new Date().setHours(0, 0, 0, 0));
@@ -22,11 +21,14 @@ export class CreateProgramComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute, private router: Router, private navigationHelperService: NavigationHelperService) { }
 
   ngOnInit() {
-  this.nameOfOrgani= "Name of organi";
     this.data =
     {
-      'filteredOptions' :
-      [{'name': 'NCERT', 'value': 'NCERT'}, {'name': 'CBSE', 'value': 'CBSE'},, {'name': 'ICSE', 'value': 'ICSE'},, {'name': 'UP', 'value': 'UP'}]
+      'board' :
+      [{'name': 'NCERT', 'value': 'NCERT'}, {'name': 'CBSE', 'value': 'CBSE'}, {'name': 'ICSE', 'value': 'ICSE'}, {'name': 'UP', 'value': 'UP'}],
+      'medium' :
+      [{'name': 'English', 'value': 'english'}, {'name': 'Marathi', 'value': 'Marathi'}, {'name': 'Hindi', 'value': 'Hindi'}, {'name': 'Oriya', 'value': 'Oriya'}],
+      'contenttypes' :
+      [{'name': 'Explanation', 'value': 'Explanation'}, {'name': 'Experiential', 'value': 'Experiential'}, {'name': 'FocusSpot', 'value': 'Hindi'}, {'name': 'Curiosity Sets', 'value': 'Curiosity Sets'}]
     }
   }
 
