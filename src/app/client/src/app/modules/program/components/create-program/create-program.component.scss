@@ -1,21 +1,31 @@
-.ui.form .field>label {
-    font-size: 1.05em;
-    font-weight: 500;
-    margin-bottom:10px;
-    font-size:14px;
+.ui {
+    .field{
+        label {
+            font-size: 1.05em;
+            font-weight: 500;
+            margin-bottom:10px;
+            font-size:14px;
+        }
+    }
+    .multiple.dropdown {
+        border: 1px solid rgba(34,36,38,.15);
+        background: #fff;
+        padding: .67857143em 1em;
+        font-size: 14px;
+    }
+    input{
+        font-size: 12px;
+        padding: 15px;
+    }
+    textarea{
+        @extend input;
+    }
+    select{
+        @extend input;
+    }
 }
-.ui.multiple.dropdown {
-    border-color: var(--gray-200);
-    background: #fff;
-    padding: .67857143em 1em;
-    font-size: 1em;
-    border: 1px solid rgba(34,36,38,.15);
-}
-.ui.dropdown:not(.button)>.default.text {
-    color: #e0e0e0;
-}
-.sb-btn-warning:hover, .sb-btn-warning:active {
-    background: #dc6135;
+.ui .default.text {
+    color: #e0e0e0 !important;
 }
 @media(min-width:768px){
     .ui.form .fields{
