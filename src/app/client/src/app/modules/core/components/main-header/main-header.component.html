@@ -11,13 +11,10 @@
         <div class="ui grid padded width-100">
             <div class="six wide column p-0">
                 <!--Logo-->
-                <!-- <a class="d-flex logo" tabindex="0" title="{{tenantInfo.titleName}}" role="banner">
+                <a class="d-flex logo" tabindex="0" title="{{tenantInfo.titleName}}" role="banner">
                     <img (click)="navigateToHome()" class="cursor-pointer" alt={{tenantInfo.titleName}} src="{{tenantInfo.logo}}">
-                </a> -->
-                <!--/Logo-->
-                <a class="d-flex logo" tabindex="0" title="Creation & Contribution Portal" role="banner" routerLink="'/'">
-                    <h3>Creation & Contribution Portal</h3>
                 </a>
+                <!--/Logo-->
             </div>
             <div class="six wide column p-0 d-flex flex-jc-flex-end flex-ai-center">
                 <!--Hamburger Icon-->
@@ -82,32 +79,28 @@
     <!--Header Blue Section-->
     <!--Computer-->
     <div class="sb-bg-color-primary p-8"
-        *ngIf="(showExploreHeader || userService.loggedIn || isOffline && !showOfflineHelpCentre) && !router.url.includes('/programs/program')">
+        *ngIf="(showExploreHeader || userService.loggedIn || isOffline && !showOfflineHelpCentre) && !router.url.includes('/sourcing/program')">
         <ng-container *ngIf="programsTabActive else defaultView">
             <div class="ui container d-flex flex-ai-center mx-0">
-                <!-- <span class="fs-1 sb-color-white py-8">{{resourceService?.frmelmnts?.lbl?.availableForContribution}}</span> -->
-                <a routerLink="programs/create-program" ><span class="fs-1 sb-color-white py-8">Add New Program</span></a>
-                <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <a routerLink="contribute" ><span class="fs-1 sb-color-white py-8">All Programs</span></a>
-                <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <a routerLink="contribute/myenrollprograms" ><span class="fs-1 sb-color-white py-8">My Programs</span></a>
-                <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <a routerLink="contribute/enrollprograms" ><span class="fs-1 sb-color-white py-8">Enroll as Contributor </span>
+                <a routerLink="sourcing/create-program" *ngIf="this.router.url.includes('/sourcing')"><span class="fs-1 sb-color-white py-8">Add New Program</span></a>
+                
+                <a routerLink="contribute" *ngIf="this.router.url.includes('/contribute')"><span class="fs-1 sb-color-white py-8">All Programs</span></a>
+                <span class="computer only mx-10 search-qrcode-divider" *ngIf="this.router.url.includes('/contribute')">|</span>
+                <a routerLink="contribute/myenrollprograms" *ngIf="this.router.url.includes('/contribute')"><span class="fs-1 sb-color-white py-8">My Programs</span></a>
+                <span class="computer only mx-10 search-qrcode-divider" *ngIf="this.router.url.includes('/contribute')">|</span>
+                <a routerLink="contribute/enrollprograms" *ngIf="this.router.url.includes('/contribute')"><span class="fs-1 sb-color-white py-8">Enroll as Contributor </span>
                 </a>
-
-                <!-- <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <span class="fs-1 sb-color-white">List</span> -->
             </div>
         </ng-container>
         <ng-template #defaultView>
             <div class="ui container d-flex flex-ai-center mx-0">
-                <a routerLink="programs/create-program" ><span class="fs-1 sb-color-white py-8">Add New Program</span></a>
-                <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <a routerLink="contribute" ><span class="fs-1 sb-color-white py-8">All Programs</span></a>
-                <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <a routerLink="contribute/myenrollprograms" ><span class="fs-1 sb-color-white py-8">My Programs</span></a>
-                <span class="computer only mx-10 search-qrcode-divider">|</span>
-                <a routerLink="contribute/enrollprograms" ><span class="fs-1 sb-color-white py-8">Enroll as Contributor </span>
+                <a routerLink="sourcing/create-program" *ngIf="this.router.url.includes('/sourcing')"><span class="fs-1 sb-color-white py-8">Add New Program</span></a>
+                
+                <a routerLink="contribute" *ngIf="this.router.url.includes('/contribute')"><span class="fs-1 sb-color-white py-8">All Programs</span></a>
+                <span class="computer only mx-10 search-qrcode-divider" *ngIf="this.router.url.includes('/contribute')">|</span>
+                <a routerLink="contribute/myenrollprograms" *ngIf="this.router.url.includes('/contribute')"><span class="fs-1 sb-color-white py-8">My Programs</span></a>
+                <span class="computer only mx-10 search-qrcode-divider" *ngIf="this.router.url.includes('/contribute')">|</span>
+                <a routerLink="contribute/enrollprograms" *ngIf="this.router.url.includes('/contribute')"><span class="fs-1 sb-color-white py-8">Enroll as Contributor </span>
                 </a>
                 <!--QR Button-->
                 <!-- <button class="ui button qr-code-btn d-flex flex-ai-center computer only mr-0" appTelemetryInteract

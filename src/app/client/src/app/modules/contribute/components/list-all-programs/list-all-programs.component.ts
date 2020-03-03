@@ -23,6 +23,7 @@ export class ListAllProgramsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.programsList$ = this.getProgramsList();
+    console.log(this.programsList$)
   }
 
   /**

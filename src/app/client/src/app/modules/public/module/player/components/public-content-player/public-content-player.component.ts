@@ -12,7 +12,6 @@ import {
 import { PublicPlayerService } from '../../../../services';
 import { IImpressionEventInput, IInteractEventObject, IInteractEventEdata } from '@sunbird/telemetry';
 import { takeUntil } from 'rxjs/operators';
-import { ContentManagerService } from '@sunbird/offline';
 import { environment } from '@sunbird/environment';
 import { PopupControlService } from '../../../../../../service/popup-control.service';
 @Component({
@@ -64,8 +63,7 @@ export class PublicContentPlayerComponent implements OnInit, OnDestroy, AfterVie
     public resourceService: ResourceService, public toasterService: ToasterService, public popupControlService: PopupControlService,
     public windowScrollService: WindowScrollService, public playerService: PublicPlayerService,
     public navigationHelperService: NavigationHelperService, public router: Router, private deviceDetectorService: DeviceDetectorService,
-    private configService: ConfigService, public contentManagerService: ContentManagerService,
-    public utilService: UtilService
+    private configService: ConfigService, public utilService: UtilService
   ) {
     this.playerOption = {
       showContentRating: true
@@ -156,7 +154,12 @@ export class PublicContentPlayerComponent implements OnInit, OnDestroy, AfterVie
       setTimeout(() => {
         if (this.dialCode) {
           sessionStorage.setItem('singleContentRedirect', 'singleContentRedirect');
-          this.router.navigate(['/get/dial/', this.dialCode]);
+          const navigateOptions = {
+            queryParams: {
+              textbook: _.get(this.activatedRoute, 'snapshot.queryParams.l1Parent')
+            }
+          };
+          this.router.navigate(['/get/dial/', this.dialCode], navigateOptions);
         } else if (this.isOffline) {
             this.navigationHelperService.navigateToResource('');
           } else {

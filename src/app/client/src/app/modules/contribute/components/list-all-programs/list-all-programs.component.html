@@ -2,52 +2,44 @@
   <div class="sb-pageSection-header">
   </div>
   <div class="sb-pageSection-content">
-
     <ng-container *ngIf="(programsList$ | async ) as programsList else loading">
       <ng-container *ngIf="programsList && programsList.length else noResult">
-        <div class="sbgrid sbgrid--grid-carousel">
-          <div appTelemetryInteract [telemetryInteractObject]="getTelemetryInteractObject(program.programId)"
-            [telemetryInteractEdata]="getTelemetryInteractEdata('program-card')" [telemetryInteractCdata]="getFeatureId('user:program:contribute', 'SB-15591')"
-            class="sbcard sbcard--resource sbcard--course" [routerLink]="['./program/' + program.programId]" *ngFor="let program of programsList">
-            <div class="sbcard__main_area">
-              <div class="sbcard__img mr-8"><img [src]="program.imagePath || 'assets/images/programs_default.png'"
-                  alt="" title="" /></div>
-              <div class="sbcard__info">
-                <h4 class="sbcard__title sb__ellipsis sb__ellipsis--two sb-color-primary font-weight-bold">
-                  {{program?.name}}
-                </h4>
-                <div class="sbcard__meta1"><span>{{program?.description}}</span>
-                </div>
-              </div>
-            </div>
-            <div class="sbcard__moreinfo">
-              <div class="sbcard__meta2">
-                <div class="sbcard__medium info">
-                  {{program?.rootOrgName}}
-                  <div class="sbcard__medium info">
-                      Submission date - 10 May 2019
-                  </div>
-                  <div class="sbcard__medium info">
-                      Text Book name - Marathi
-                  </div> <div class="ui horizontal info"></div>
-                  <div class="sbcard__medium info">
-                      Reward- Certificate
-                  </div>
-                  <div class="sbcard__medium info">
-                      MGS-  Telugu, Class 9, Mathematics
-                  </div>
-                  <div class="ui grid centered info">
-                    <div class="four wide column">
-                        <button class="sb-btn sb-btn-small sb-btn-primary nominate-button ">
-                          Nominate
-                        </button>
-                    </div>
-                </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <table class="ui very padded table accordion">
+          <thead>
+            <tr>
+              <th>Program & Board</th>
+              <th>Textbooks & Chapters</th>
+              <th>Subjects</th>
+              <th>Submission Date</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let program of programsList" [routerLink]="['./program/' + program.programId]" >
+              <td> <p>{{program?.name}}</p>
+                <p class="ui teal label">CBSC</p> 
+
+              </td>
+              <td >
+                <p >
+                  <strong>5 </strong><small>Textbooks </small>
+                  <strong>64</strong><small> Textbooks</small>
+                  <small>5,6,7 </small><strong> Grades</strong>
+                </p>
+                
+              </td>
+              <td >
+                <p>Mathamatics , Science and 3 more</p>
+                <p class="language">English, Hindi, Marathi</p>
+                
+              </td>
+              <td  >
+                <p>10 May 2019</p>
+                <p><small>20 days to ago</small></p>   
+              </td>
+            </tr>
+          </tbody>
+        </table> 
       </ng-container>
       <ng-template #noResult>
         <app-no-result [data]="{messageText: resourceService.messages.stmsg.m0006}"></app-no-result>

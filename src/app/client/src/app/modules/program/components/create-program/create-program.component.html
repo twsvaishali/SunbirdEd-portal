@@ -3,7 +3,7 @@
   <sui-tabset>
 	 <div class="ui top attached tabular menu">
 		<a class="item" suiTabHeader="1">Details</a>
-		<a class="item" suiTabHeader="2" [isDisabled]="!showTextBookSelector">Second</a>
+		<a class="item" suiTabHeader="2" [isDisabled]="!showTextBookSelector">Select Textbooks</a>
 	 </div>
 	 <div class="ui bottom attached segment" suiTabContent="1">
 		<form class="ui form" [formGroup]="createProgramForm" (submit)="saveProgram()">
@@ -236,7 +236,6 @@
 			  </tr>
 			</thead>
 			<tbody>
-			<!-- <span *ngFor="let key of objectKey(collectionList)"> -->
 				<tr *ngFor="let data of collections" >
 				  <td class="collapsing">
 					<div class="ui fitted checkbox">

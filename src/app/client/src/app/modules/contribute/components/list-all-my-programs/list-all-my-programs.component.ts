@@ -15,6 +15,7 @@ export class ListAllMyProgramsComponent implements OnInit, AfterViewInit {
 
   public programsList$;
   public noResultFound;
+  public nominationStatus = "nominated"
   public telemetryImpression: IImpressionEventInput;
 
   constructor(private programsService: ProgramsService, public resourceService: ResourceService,

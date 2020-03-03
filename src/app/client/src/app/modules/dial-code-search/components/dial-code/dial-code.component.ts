@@ -10,9 +10,6 @@ import { takeUntil, mergeMap, first, tap, retry, catchError, map, finalize } fro
 import { Subject } from 'rxjs';
 import * as TreeModel from 'tree-model';
 import { environment } from '@sunbird/environment';
-import {
-  ContentManagerService
-} from './../../../../../../projects/desktop/src/app/modules/offline/services/content-manager/content-manager.service';
 import { DialCodeService } from '../../services/dial-code/dial-code.service';
 const treeModel = new TreeModel();
 
@@ -70,7 +67,7 @@ export class DialCodeComponent implements OnInit, OnDestroy {
     public searchService: SearchService, public toasterService: ToasterService, public configService: ConfigService,
     public utilService: UtilService, public navigationhelperService: NavigationHelperService,
     public playerService: PlayerService, public telemetryService: TelemetryService,
-    public contentManagerService: ContentManagerService, public publicPlayerService: PublicPlayerService,
+    public publicPlayerService: PublicPlayerService,
     private dialCodeService: DialCodeService) {
   }
 
@@ -80,7 +77,7 @@ export class DialCodeComponent implements OnInit, OnDestroy {
         return { ...params, ...queryParams };
       }).pipe(
         tap(this.initialize),
-        mergeMap(params => iif(() => _.get(params, 'textbook'), this.processTextBook(params), this.processDialCode(params))),
+        mergeMap(params => _.get(params, 'textbook') ? this.processTextBook(params) : this.processDialCode(params)),
       ).subscribe(res => {
         const linkedContents = _.flatMap(_.values(res));
         const { constantData, metaData, dynamicFields } = this.configService.appConfig.GetPage;
@@ -110,15 +107,6 @@ export class DialCodeComponent implements OnInit, OnDestroy {
       }, () => {
         this.showLoader = false;
       });
-    if (this.isOffline) {
-      this.contentManagerService.downloadListEvent.pipe(takeUntil(this.unsubscribe$)).subscribe((data) => {
-        this.updateCardData(data);
-      });
-      this.contentManagerService.downloadEvent.pipe(first(),
-        takeUntil(this.unsubscribe$)).subscribe(() => {
-          this.showDownloadLoader = false;
-        });
-    }
   }
 
   private initialize = (params) => {
@@ -230,20 +218,7 @@ export class DialCodeComponent implements OnInit, OnDestroy {
 
   public getEvent(event) {
 
-    // For offline environment content will only play when event.action is open
-    if (event.action === 'download' && this.isOffline) {
-      this.startDownload(event.data.metaData.identifier);
-      this.showDownloadLoader = true;
-      this.contentName = event.data.name;
-      return false;
-    } else if (event.action === 'export' && this.isOffline) {
-      this.showExportLoader = true;
-      this.contentName = event.data.name;
-      this.exportOfflineContent(event.data.metaData.identifier);
-      return false;
-    }
-
-    if (_.includes(this.router.url, 'browse') && this.isOffline) {
+   if (_.includes(this.router.url, 'browse') && this.isOffline) {
       this.redirectCollectionUrl = 'browse/play/collection';
       this.redirectContentUrl = 'browse/play/content';
     } else {
@@ -381,30 +356,6 @@ export class DialCodeComponent implements OnInit, OnDestroy {
       this.showMobilePopup = true;
     }, 500);
   }
-  startDownload(contentId) {
-    this.contentManagerService.downloadContentId = contentId;
-    this.contentManagerService.startDownload({}).subscribe(data => {
-      this.contentManagerService.downloadContentId = '';
-    }, error => {
-      this.showDownloadLoader = false;
-      this.contentManagerService.downloadContentId = '';
-      _.each(this.itemsToDisplay, (contents) => {
-        contents['downloadStatus'] = this.resourceService.messages.stmsg.m0138;
-      });
-      this.toasterService.error(this.resourceService.messages.fmsg.m0090);
-    });
-  }
-  exportOfflineContent(contentId) {
-    this.contentManagerService.exportContent(contentId).subscribe(data => {
-      this.showExportLoader = false;
-      this.toasterService.success(this.resourceService.messages.smsg.m0059);
-    }, error => {
-      this.showExportLoader = false;
-      if (error.error.responseCode !== 'NO_DEST_FOLDER') {
-        this.toasterService.error(this.resourceService.messages.fmsg.m0091);
-      }
-    });
-  }
   updateCardData(downloadListdata) {
     _.each(this.itemsToDisplay, (contents) => {
       this.publicPlayerService.updateDownloadStatus(downloadListdata, contents);
@@ -435,7 +386,14 @@ export class DialCodeComponent implements OnInit, OnDestroy {
     if (_.get(this.activatedRoute, 'snapshot.queryParams.textbook') && _.get(this.dialCodeService, 'dialCodeResult.count') > 1) {
       this.router.navigate(['/get/dial', _.get(this.activatedRoute, 'snapshot.params.dialCode')]);
     } else {
-      const previousUrl = _.get(this.navigationhelperService.getPreviousUrl(), 'url') || '/get';
+      let previousUrl = _.get(this.navigationhelperService.getPreviousUrl(), 'url') || '/get';
+      if (_.includes(previousUrl, 'play')) {
+        if (this.userService.loggedIn) {
+          previousUrl = '/resources';
+        } else {
+          previousUrl = '/explore';
+        }
+      }
       this.router.navigate([previousUrl]);
     }
   }

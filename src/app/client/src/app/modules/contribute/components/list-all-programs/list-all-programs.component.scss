@@ -6,6 +6,17 @@
     grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
     grid-gap: 1rem;
   }
+  .nominate-button {
+    padding-bottom: 1px;
+    padding-top: 1px;
+  }
+  .info {
+    padding-bottom: 1px;
+    padding-top: 1px;
+  }
+  .language {
+    color: rgb(245, 109, 19);
+  }
   .sbcard {
     width: 292px;
     max-width: 100%;

@@ -37,6 +37,9 @@ export class CollectionComponent implements OnInit, OnDestroy {
   public filters;
   public telemetryInteractCdata: any;
   public telemetryInteractPdata: any;
+  public nominate="nominate";
+  public changeButtonId="";
+  public uploadSample=""
   isMediumClickable = false;
   showLoader = true;
   selectedIndex = -1;
@@ -68,8 +71,7 @@ export class CollectionComponent implements OnInit, OnDestroy {
     this.sessionContext = _.assign(this.collectionComponentInput.sessionContext, {
       currentRole: _.get(this.programContext, 'userDetails.roles[0]'),
       bloomsLevel: _.get(this.programContext, 'config.scope.bloomsLevel'),
-      // programId: _.get(this.programContext, 'programId'),
-      programId: '31ab2990-7892-11e9-8a02-93c5c62c03f1' || _.get(this.programContext, 'programId'),
+      programId: _.get(this.programContext, 'programId'),
       program: _.get(this.programContext, 'name'),
       onBoardSchool: _.get(this.programContext, 'userDetails.onBoardingData.school'),
       collectionType: _.get(this.collectionComponentConfig, 'collectionType'),
@@ -212,11 +214,14 @@ export class CollectionComponent implements OnInit, OnDestroy {
 }
 
   groupCollectionList(groupValue?: string) {
-    if (groupValue) {
-      this.collectionList = _.groupBy(this.collectionsWithCardImage, { 'subject' : groupValue } );
-    } else {
-      this.collectionList = _.groupBy(this.filteredList, 'subject');
-    }
+    // if (groupValue) {
+    //   this.collectionList = _.groupBy(this.collectionsWithCardImage, { 'subject' : groupValue } );
+    // } else {
+    //   this.collectionList = _.groupBy(this.filteredList, 'subject');
+    // }
+
+    this.collectionList = this.filteredList;
+    console.log( this.filteredList)
   }
 
   addCardImage(collection) {
@@ -228,10 +233,10 @@ export class CollectionComponent implements OnInit, OnDestroy {
     this.sharedContext = this.collectionComponentInput.programContext.config.sharedContext.reduce((obj, context) => {
       return {...obj, [context]: event.data[context] || this.sharedContext[context]};
     }, this.sharedContext);
-    if (this.sharedContext.gradeLevel) {
-      // tslint:disable-next-line:max-line-length
-      this.sharedContext.gradeLevel = _.isArray(this.sharedContext.gradeLevel) ? this.sharedContext.gradeLevel : _.split(this.sharedContext.gradeLevel, ',');
-    }
+
+    _.forEach(['gradeLevel', 'medium', 'subject'], (val) => {
+       this.checkArrayCondition(val);
+    });
     this.sessionContext = _.assign(this.sessionContext, this.sharedContext);
     this.sessionContext.collection =  event.data.metaData.identifier;
     this.sessionContext.collectionName = event.data.name;
@@ -247,12 +252,24 @@ export class CollectionComponent implements OnInit, OnDestroy {
     this.programStageService.addStage('chapterListComponent');
   }
 
+  checkArrayCondition(param) {
+    // tslint:disable-next-line:max-line-length
+    this.sharedContext[param] = _.isArray(this.sharedContext[param]) ? this.sharedContext[param] : _.split(this.sharedContext[param], ',');
+  }
+
   viewMoreClickHandler(event) {
     console.log(event);
   }
 
   ngOnDestroy() {
     this.stageSubscription.unsubscribe();
+  }
+
+  ChangeUploadStatus(rowId)
+  {
+    this.changeButtonId = rowId;
+    //this.nominate = "uploadSample";
+    this.uploadSample="uploadSample";
   }
 
 }

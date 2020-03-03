@@ -2,36 +2,22 @@
 <div class="ui text menu m-0 d-flex flex-jc-center flex-ai-center computer only">
 	<!--Logged in user-->
 	<ng-container *ngIf="userService.loggedIn">
-		<!-- <a class="item" [class.active]="router.isActive('/search/Library') || router.isActive('/resources')"
-			appTelemetryInteract [telemetryInteractEdata]="libraryMenuIntractEdata" routerLink="/resources">
-			{{resourceService?.frmelmnts?.tab?.resources}}
-		</a>
-		<a class="item" [class.active]="router.isActive('/search/Courses') || router.isActive('/learn')"
-			appTelemetryInteract [telemetryInteractEdata]="learnMenuIntractEdata" routerLink="/learn">
-			{{resourceService?.frmelmnts?.tab?.courses}}
+		<!-- <a *ngIf="showContributeTab" class="item" [class.active]="router.isActive('/contribute')"
+			routerLink="/contribute" appTelemetryInteract [telemetryInteractEdata]="contributeMenuEdata"
+			[telemetryInteractCdata]="getFeatureId('user:program:contribute', 'SB-15591')">
+			{{resourceService?.frmelmnts?.tab?.contribute}}
 		</a> -->
-		<a class="item" [class.active]="router.isActive('/programs')" routerLink="/programs">
-			Programs
-		</a>
-		<a class="item" [class.active]="router.isActive('/contribute')" routerLink="/contribute">
-			Contribute
-		</a>
-		<!-- <a class="item" [class.active]="router.isActive('/workspace')" appTelemetryInteract
-			[telemetryInteractEdata]="workspaceMenuIntractEdata" *ngIf='permissionService.permissionAvailable'
-			appPermission [permission]='workSpaceRole' [routerLink]="[navigateToWorkspace()]" tabindex="0">
-			{{resourceService?.frmelmnts?.tab?.workspace}}
-		</a>
 		<a class="item" appTelemetryInteract [telemetryInteractEdata]="helpMenuIntractEdata"
 			*ngIf='permissionService.permissionAvailable && helpLinkVisibility.toLowerCase() === "true"' appPermission
 			[permission]='workSpaceRole' href="/help/creator/content-lifecycle/index.html" target="_blank">
 			{{resourceService?.frmelmnts?.tab?.help}}
-		</a> -->
+		</a>
 	</ng-container>
 	<!--/Logged in user-->
 
 	<!--Not Logged in user-->
 	<ng-container *ngIf="!userService.loggedIn && !isOffline">
-		<!-- <button class="ui blue button" *ngIf="router.isActive('', true) && exploreButtonVisibility==='true'"
+		<button class="ui blue button" *ngIf="router.isActive('', true) && exploreButtonVisibility==='true'"
 			tabindex="0" [routerLink]="'/explore'">
 			{{resourceService.frmelmnts?.lbl?.explore}} {{resourceService.instance}}
 		</button>
@@ -47,8 +33,8 @@
 			appTelemetryInteract [telemetryInteractEdata]="learnMenuIntractEdata">
 			{{resourceService?.frmelmnts?.tab?.courses}}
 		</a>
-		<span class="item divider">|</span> -->
-		<a class="item font-weight-bold sb-color-primary pr-0" href="/resources" appTelemetryInteract
+		<span class="item divider">|</span>
+		<a class="item font-weight-bold sb-color-primary pr-0" [href]="router.url === '/' ? '/sourcing' : '/contribute'" appTelemetryInteract
 			[telemetryInteractEdata]="signInIntractEdata">
 			{{resourceService.frmelmnts?.btn?.login}}
 		</a>
@@ -56,7 +42,7 @@
 	<!--/Not Logged in user-->
 	<!-- offline container-->
 	<ng-container *ngIf="isOffline">
-		<!-- <a class="item tour-2" [routerLink]="'/'"
+		<a class="item tour-2" [routerLink]="'/'"
 			[ngClass]="(router.isActive('/') && !(router.isActive('/browse') || router.isActive('/help-center')) ) ? 'active': ''"
 			appTelemetryInteract [telemetryInteractEdata]="myLibraryMenuInteractEdata">
 			{{resourceService.frmelmnts?.btn?.myLibrary}}
@@ -68,7 +54,7 @@
 		<a class="item" [ngClass]="router.isActive('/help-center')? 'active': ''" [routerLink]="'/help-center'"
 			appTelemetryInteract [telemetryInteractEdata]="helpCenterEdata">
 			{{resourceService.frmelmnts?.btn?.downloadPdf}}
-		</a> -->
+		</a>
 	</ng-container>
 
 	<!-- offline container-->
@@ -90,7 +76,7 @@
 				</div>
 			</div>
 			<div class="ui divider mt-0"></div>
-			<!-- <a class="item" [class.active]="router.isActive('/search/Library') || router.isActive('/resources')"
+			<a class="item" [class.active]="router.isActive('/search/Library') || router.isActive('/resources')"
 				(click)="showSideBar()" appTelemetryInteract [telemetryInteractEdata]="libraryMenuIntractEdata"
 				routerLink="/resources">
 				{{resourceService?.frmelmnts?.tab?.resources}}
@@ -99,14 +85,11 @@
 				(click)="showSideBar()" appTelemetryInteract [telemetryInteractEdata]="learnMenuIntractEdata"
 				routerLink="/learn">
 				{{resourceService?.frmelmnts?.tab?.courses}}
-			</a> -->
-			<a class="item" [class.active]="router.isActive('/contribute')"
-				(click)="showSideBar()" routerLink="/contribute">
-				Contribute
 			</a>
-			<a class="item" [class.active]="router.isActive('/programs')"
-				(click)="showSideBar()" routerLink="/programs">
-				Programs
+			<a *ngIf="showContributeTab" class="item" [class.active]="router.isActive('/contribute')"
+				(click)="showSideBar()" appTelemetryInteract [telemetryInteractEdata]="contributeMenuEdata"
+				routerLink="/contribute" [telemetryInteractCdata]="getFeatureId('user:program:contribute', 'SB-15591')">
+				{{resourceService?.frmelmnts?.tab?.contribute}}
 			</a>
 			<a class="item" [class.active]="router.isActive('/search/profile') || router.isActive('/profile')"
 				(click)="showSideBar()" routerLink="/profile">
@@ -129,7 +112,7 @@
 				</a>
 			</div>
 			<div class="ui divider mt-0"></div>
-			<!-- <a class="item" (click)="showSideBar()" *ngIf="router.isActive('', true)" routerLink="/explore">
+			<a class="item" (click)="showSideBar()" *ngIf="router.isActive('', true)" routerLink="/explore">
 				{{resourceService.frmelmnts?.lbl?.explore}} {{resourceService.instance}}
 			</a>
 			<a class="item"
@@ -143,7 +126,7 @@
 				[routerLink]="[slug ? slug + '/explore-course' : '/explore-course']" (click)="showSideBar()"
 				*ngIf="!router.isActive('', true)">
 				{{resourceService?.frmelmnts?.tab?.courses}}
-			</a> -->
+			</a>
 		</ng-container>
 		<!--/Not Logged in user-->
 
